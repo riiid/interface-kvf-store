@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package riiid.kvf;
+
+import "riiid/interface-kvf-storage/entity.proto";
+
+service KvfService {
+    rpc Get(GetRequest) returns (GetResponse) {}
+    rpc Set(SetRequest) returns (SetResponse) {}
+    rpc CreateFormat(CreateFormatRequest) returns (CreateFormatResponse) {}
+}
+
+message GetRequest {
+    string key = 1;
+    string format_id = 2;
+}
+
+message GetResponse {
+    bytes value = 1;
+}
+
+message SetRequest {
+    Item item = 1;
+}
+
+message SetResponse {}
+
+message CreateFormatRequest {
+    string name = 1;
+    string description = 2;
+    repeated string parents = 3;
+}
+
+message CreateFormatResponse {
+    string format_id = 1;
+}

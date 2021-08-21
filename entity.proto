@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package riiid.kvf;
+
+message Item {
+    string key = 1;
+    bytes value = 2;
+    string format_id = 3;
+}
+
+message Format {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    repeated string parents = 4;
+}
