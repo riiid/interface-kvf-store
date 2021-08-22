@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package riiid.kvf;
 
-import "riiid/interface-kvf-storage/entity.proto";
+import "riiid/interface-kvf-store/entity.proto";
 
 service KvfService {
     rpc Has(HasRequest) returns (HasResponse) {}
