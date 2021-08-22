@@ -5,32 +5,147 @@ package riiid.kvf;
 import "riiid/interface-kvf-storage/entity.proto";
 
 service KvfService {
+    rpc Has(HasRequest) returns (HasResponse) {}
     rpc Get(GetRequest) returns (GetResponse) {}
+    rpc GetFormatId(GetFormatIdRequest) returns (GetFormatIdResponse) {}
     rpc Set(SetRequest) returns (SetResponse) {}
+    rpc Delete(DeleteRequest) returns (DeleteResponse) {}
+    rpc Keys(KeysRequest) returns (KeysResponse) {}
+    rpc Convert(ConvertRequest) returns (ConvertResponse) {}
+    rpc GetSchema(GetSchemaRequest) returns (GetSchemaResponse) {}
     rpc CreateFormat(CreateFormatRequest) returns (CreateFormatResponse) {}
+    rpc DeleteFormat(DeleteFormatRequest) returns (DeleteFormatResponse) {}
+    rpc AppendParent(AppendParentRequest) returns (AppendParentResponse) {}
+    rpc RemoveParent(RemoveParentRequest) returns (RemoveParentResponse) {}
+    rpc AppendValidator(AppendValidatorRequest) returns (AppendValidatorResponse) {}
+    rpc RemoveValidator(RemoveValidatorRequest) returns (RemoveValidatorResponse) {}
+    rpc CreateConverter(CreateConverterRequest) returns (CreateConverterResponse) {}
+    rpc DeleteConverter(DeleteConverterRequest) returns (DeleteConverterResponse) {}
+}
+
+message HasRequest {
+    string key = 1;
+}
+
+message HasResponse {
+    bool has = 1;
 }
 
 message GetRequest {
     string key = 1;
-    string format_id = 2;
 }
 
 message GetResponse {
     bytes value = 1;
+    string format_id = 2;
+}
+
+message GetFormatIdRequest {
+    string key = 1;
+}
+
+message GetFormatIdResponse {
+    string format_id = 1;
 }
 
 message SetRequest {
-    Item item = 1;
+    string key = 1;
+    bytes value = 2;
+    string format_id = 3;
 }
 
 message SetResponse {}
 
+message DeleteRequest {
+    string key = 1;
+}
+
+message DeleteResponse {}
+
+message KeysRequest {
+    string pattern = 1;
+}
+
+message KeysResponse {
+    repeated string keys = 1;
+}
+
+message ConvertRequest {
+    string key = 1;
+    string to_format_id = 2;
+}
+
+message ConvertResponse {
+    bytes value = 1;
+}
+
+message GetSchemaRequest {}
+
+message GetSchemaResponse {
+    Schema schema = 1;
+}
+
 message CreateFormatRequest {
-    string name = 1;
-    string description = 2;
-    repeated string parents = 3;
+    string format_name = 1;
+    string format_description = 2;
 }
 
 message CreateFormatResponse {
     string format_id = 1;
+}
+
+message DeleteFormatRequest {
+    string format_id = 1;
+}
+
+message DeleteFormatResponse {}
+
+message AppendParentRequest {
+    string format_id = 1;
+    string parent_format_id = 2;
+}
+
+message AppendParentResponse {}
+
+message RemoveParentRequest {
+    string format_id = 1;
+    string parent_format_id = 2;
+}
+
+message RemoveParentResponse {}
+
+message AppendValidatorRequest {
+    string format_id = 1;
+    string validator_name = 2;
+    string validator_description = 3;
+    string validator_src = 4;
+    string validator_integrity = 5;
+}
+
+message AppendValidatorResponse {
+    string validator_id = 1;
+}
+
+message RemoveValidatorRequest {
+    string format_id = 1;
+    string validator_id = 2;
+}
+
+message RemoveValidatorResponse {}
+
+message CreateConverterRequest {
+    string from_format_id = 1;
+    string to_format_id = 2;
+    string converter_name = 3;
+    string converter_description = 4;
+    string converter_src = 5;
+    string converter_integrity = 6;
+}
+
+message CreateConverterResponse {
+    string converter_id = 1;
+}
+
+message DeleteConverterRequest {
+    string converter_id = 1;
 }

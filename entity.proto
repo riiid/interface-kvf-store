@@ -8,9 +8,39 @@ message Item {
     string format_id = 3;
 }
 
+message Schema {
+    repeated Format formats = 1;
+    repeated Edge edges = 2;
+    repeated Validator validators = 3;
+    repeated Converter converters = 4;
+}
+
 message Format {
     string id = 1;
     string name = 2;
     string description = 3;
-    repeated string parents = 4;
+    repeated string parent_format_ids = 4;
+    repeated string validator_ids = 5;
+}
+
+message Edge {
+    string from_format_id = 1;
+    string to_format_id = 2;
+    string converter_id = 3;
+}
+
+message Validator {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    string src = 4;
+    string integrity = 5;
+}
+
+message Converter {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    string src = 4;
+    string integrity = 5;
 }
