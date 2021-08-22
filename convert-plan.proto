@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package riiid.kvf;
+
+message ConvertPlan {
+    repeated ConvertPlanEntry entries = 1;
+}
+
+message ConvertPlanEntry {
+    oneof value {
+        Upcast upcast = 1;
+        Convert convert = 2;
+    }
+    message Upcast {
+        string format_id = 1;
+    }
+    message Convert {
+        string format_id = 1;
+    }
+}
