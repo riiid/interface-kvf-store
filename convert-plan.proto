@@ -8,13 +8,13 @@ message ConvertPlan {
 
 message ConvertPlanEntry {
     oneof value {
-        Upcast upcast = 1;
-        Convert convert = 2;
-    }
-    message Upcast {
-        string format_id = 1;
+        Convert convert = 1;
+        Upcast upcast = 2;
     }
     message Convert {
+        string format_id = 1;
+    }
+    message Upcast {
         string format_id = 1;
     }
 }
