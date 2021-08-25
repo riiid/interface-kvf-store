@@ -160,3 +160,5 @@ message CreateConverterResponse {
 message DeleteConverterRequest {
     string converter_id = 1;
 }
+
+message DeleteConverterResponse {}
