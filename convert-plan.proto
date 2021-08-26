@@ -3,7 +3,9 @@ syntax = "proto3";
 package riiid.kvf;
 
 message ConvertPlan {
-    repeated ConvertPlanEntry entries = 1;
+    string from_format_id = 1;
+    string to_format_id = 2;
+    repeated ConvertPlanEntry entries = 3;
 }
 
 message ConvertPlanEntry {
