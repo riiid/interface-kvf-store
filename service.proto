@@ -17,8 +17,8 @@ service KvfService {
     rpc GetSchema(GetSchemaRequest) returns (GetSchemaResponse) {}
     rpc CreateFormat(CreateFormatRequest) returns (CreateFormatResponse) {}
     rpc DeleteFormat(DeleteFormatRequest) returns (DeleteFormatResponse) {}
-    rpc AppendParent(AppendParentRequest) returns (AppendParentResponse) {}
-    rpc RemoveParent(RemoveParentRequest) returns (RemoveParentResponse) {}
+    rpc SetParent(SetParentRequest) returns (SetParentResponse) {}
+    rpc DeleteParent(DeleteParentRequest) returns (DeleteParentResponse) {}
     rpc AppendValidator(AppendValidatorRequest) returns (AppendValidatorResponse) {}
     rpc RemoveValidator(RemoveValidatorRequest) returns (RemoveValidatorResponse) {}
     rpc CreateConverter(CreateConverterRequest) returns (CreateConverterResponse) {}
@@ -111,19 +111,18 @@ message DeleteFormatRequest {
 
 message DeleteFormatResponse {}
 
-message AppendParentRequest {
+message SetParentRequest {
     string format_id = 1;
     string parent_format_id = 2;
 }
 
-message AppendParentResponse {}
+message SetParentResponse {}
 
-message RemoveParentRequest {
+message DeleteParentRequest {
     string format_id = 1;
-    string parent_format_id = 2;
 }
 
-message RemoveParentResponse {}
+message DeleteParentResponse {}
 
 message AppendValidatorRequest {
     string format_id = 1;
