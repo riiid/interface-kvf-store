@@ -17,8 +17,6 @@ service KvfService {
     rpc GetSchema(GetSchemaRequest) returns (GetSchemaResponse) {}
     rpc CreateFormat(CreateFormatRequest) returns (CreateFormatResponse) {}
     rpc DeleteFormat(DeleteFormatRequest) returns (DeleteFormatResponse) {}
-    rpc SetParent(SetParentRequest) returns (SetParentResponse) {}
-    rpc DeleteParent(DeleteParentRequest) returns (DeleteParentResponse) {}
     rpc AppendValidator(AppendValidatorRequest) returns (AppendValidatorResponse) {}
     rpc RemoveValidator(RemoveValidatorRequest) returns (RemoveValidatorResponse) {}
     rpc CreateConverter(CreateConverterRequest) returns (CreateConverterResponse) {}
@@ -87,7 +85,7 @@ message InspectConvertPlanRequest {
 }
 
 message InspectConvertPlanResponse {
-    ConvertPlan convert_plan = 1;
+    repeated Edge edges = 1;
 }
 
 message GetSchemaRequest {}
@@ -110,19 +108,6 @@ message DeleteFormatRequest {
 }
 
 message DeleteFormatResponse {}
-
-message SetParentRequest {
-    string format_id = 1;
-    string parent_format_id = 2;
-}
-
-message SetParentResponse {}
-
-message DeleteParentRequest {
-    string format_id = 1;
-}
-
-message DeleteParentResponse {}
 
 message AppendValidatorRequest {
     string format_id = 1;
