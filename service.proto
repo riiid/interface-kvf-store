@@ -3,7 +3,6 @@ syntax = "proto3";
 package riiid.kvf;
 
 import "riiid/interface-kvf-store/entity.proto";
-import "riiid/interface-kvf-store/convert-plan.proto";
 
 service KvfService {
     rpc Has(HasRequest) returns (HasResponse) {}
@@ -85,7 +84,7 @@ message InspectConvertPlanRequest {
 }
 
 message InspectConvertPlanResponse {
-    repeated Edge edges = 1;
+    repeated string format_ids = 1;
 }
 
 message GetSchemaRequest {}
