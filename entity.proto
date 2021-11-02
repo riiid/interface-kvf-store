@@ -30,10 +30,11 @@ message Validator {
 }
 
 message Converter {
-    string from_format_id = 1;
-    string to_format_id = 2;
-    string name = 3;
-    string description = 4;
-    string src = 5;
-    string integrity = 6;
+    string id = 1;
+    string from_format_id = 2;
+    string to_format_id = 3;
+    string name = 4;
+    string description = 5;
+    string src = 6;
+    string integrity = 7;
 }
