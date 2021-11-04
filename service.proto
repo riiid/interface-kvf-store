@@ -3,7 +3,6 @@ syntax = "proto3";
 package riiid.kvf;
 
 import "riiid/interface-kvf-store/entity.proto";
-import "riiid/interface-kvf-store/convert-plan.proto";
 
 service KvfService {
     rpc Has(HasRequest) returns (HasResponse) {}
@@ -17,8 +16,6 @@ service KvfService {
     rpc GetSchema(GetSchemaRequest) returns (GetSchemaResponse) {}
     rpc CreateFormat(CreateFormatRequest) returns (CreateFormatResponse) {}
     rpc DeleteFormat(DeleteFormatRequest) returns (DeleteFormatResponse) {}
-    rpc SetParent(SetParentRequest) returns (SetParentResponse) {}
-    rpc DeleteParent(DeleteParentRequest) returns (DeleteParentResponse) {}
     rpc AppendValidator(AppendValidatorRequest) returns (AppendValidatorResponse) {}
     rpc RemoveValidator(RemoveValidatorRequest) returns (RemoveValidatorResponse) {}
     rpc CreateConverter(CreateConverterRequest) returns (CreateConverterResponse) {}
@@ -87,7 +84,7 @@ message InspectConvertPlanRequest {
 }
 
 message InspectConvertPlanResponse {
-    ConvertPlan convert_plan = 1;
+    repeated string format_ids = 1;
 }
 
 message GetSchemaRequest {}
@@ -110,19 +107,6 @@ message DeleteFormatRequest {
 }
 
 message DeleteFormatResponse {}
-
-message SetParentRequest {
-    string format_id = 1;
-    string parent_format_id = 2;
-}
-
-message SetParentResponse {}
-
-message DeleteParentRequest {
-    string format_id = 1;
-}
-
-message DeleteParentResponse {}
 
 message AppendValidatorRequest {
     string format_id = 1;
@@ -153,11 +137,13 @@ message CreateConverterRequest {
 }
 
 message CreateConverterResponse {
-    string converter_id = 1;
+    string from_format_id = 1;
+    string to_format_id = 2;
 }
 
 message DeleteConverterRequest {
-    string converter_id = 1;
+    string from_format_id = 1;
+    string to_format_id = 2;
 }
 
 message DeleteConverterResponse {}

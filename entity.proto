@@ -2,8 +2,6 @@ syntax = "proto3";
 
 package riiid.kvf;
 
-import "google/protobuf/wrappers.proto";
-
 message Item {
     string key = 1;
     bytes value = 2;
@@ -12,23 +10,15 @@ message Item {
 
 message Schema {
     repeated Format formats = 1;
-    repeated Edge edges = 2;
-    repeated Validator validators = 3;
-    repeated Converter converters = 4;
+    repeated Validator validators = 2;
+    repeated Converter converters = 3;
 }
 
 message Format {
     string id = 1;
     string name = 2;
     string description = 3;
-    google.protobuf.StringValue parent_format_id = 4;
     repeated string validator_ids = 5;
-}
-
-message Edge {
-    string from_format_id = 1;
-    string to_format_id = 2;
-    string converter_id = 3;
 }
 
 message Validator {
@@ -40,9 +30,10 @@ message Validator {
 }
 
 message Converter {
-    string id = 1;
-    string name = 2;
-    string description = 3;
-    string src = 4;
-    string integrity = 5;
+    string from_format_id = 1;
+    string to_format_id = 2;
+    string name = 3;
+    string description = 4;
+    string src = 5;
+    string integrity = 6;
 }
